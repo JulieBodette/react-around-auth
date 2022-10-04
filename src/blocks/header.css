@@ -12,6 +12,7 @@
 }
 
 .header__login-text {
+  margin-bottom: 46px; /* top right bottom left */
   align-self: flex-end;
   font-family: 'Inter', 'Arial', sans-serif; /*fallback fonts */
   font-style: normal;
