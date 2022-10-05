@@ -14,7 +14,7 @@ return(
           id="username"
           required
         />
-        <span className="modal__error username-error">error here</span>
+        {/*Could add an error field here- similar to the modal errors- maybe check to make sure the test is an email (has @ sign?) */}
         <input
           type="password" //This causes the text to look like dots
           className="login__input-text"
@@ -23,7 +23,6 @@ return(
           id="password"
           required
         />
-        <span className="modal__error password-error">error here</span>
 
         <button type="submit" className="login__submit-button">
           Log in
