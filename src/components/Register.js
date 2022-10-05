@@ -22,7 +22,7 @@ export function Register({ handleSubmit }) {
             />
     
             <button type="submit" className="register__submit-button">
-              Log in
+              Sign up
             </button>
             <p className="register__text">Already a member? Log in here!</p>
           </form>
