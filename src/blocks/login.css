@@ -20,6 +20,11 @@
   cursor: pointer; /*change cursor to show user the element is interactive*/
 }
 
+.login__submit-button:hover {
+  background: #ffffff;
+  opacity: 0.85;
+}
+
 .login__input-text {
   /* this is the entire input box, you can put the text styles (font and font color) in here */
   /*also the border styles */
@@ -57,4 +62,14 @@
   color: #ffffff; /*make text black (override default of white)*/
   padding: 0px;
   margin: 60px 0px 50px 0px; /* top right bottom left not centered-aligned to left*/
+}
+
+.login__text {
+  font-family: 'Inter', 'Arial', sans-serif; /*fallback fonts */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
 }

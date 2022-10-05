@@ -27,6 +27,7 @@ return(
         <button type="submit" className="login__submit-button">
           Log in
         </button>
+        <p className="login__text">Not a member yet? Sign up here!</p>
       </form>
       );
 
