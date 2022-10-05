@@ -1,10 +1,7 @@
 
-
 export function Login({ handleSubmit }) {
 
-
 return(
-
 <form name="loginform" className="login__form login" onSubmit={handleSubmit}>
   <h1 className="login__title">Log in</h1>
         <input
@@ -30,6 +27,5 @@ return(
         <p className="login__text">Not a member yet? Sign up here!</p>
       </form>
       );
-
 
         }

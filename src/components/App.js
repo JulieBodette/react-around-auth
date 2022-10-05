@@ -18,6 +18,7 @@ import { EditAvatarPopup } from "./EditAvatarPopup";
 import { AddPlacePopup } from "./AddPlacePopup";
 
 import {Login} from "./Login";
+import {Register} from "./Register";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -177,6 +178,7 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header />
+          <Register handleSubmit={handleEditAvatarClick}/>
           <Login handleSubmit={handleEditAvatarClick}/>
           <Main
             onEditProfileClick={handleEditProfileClick}
