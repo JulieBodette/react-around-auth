@@ -4,12 +4,11 @@ export function Login({ handleSubmit }) {
 
 
 return(
-<form name="avatarimage" className="modal__form" onSubmit={handleSubmit}>
-        {/*This modal uses placeholder , but the other one
-  uses value*/}
+
+<form name="avatarimage" className="login__form login" onSubmit={handleSubmit}>
+  <h1>Log in</h1>
         <input
-          //ref={inputRef} 
-          className="modal__input-text"
+          className="login__input-text"
           name="username"
           placeholder="Username"
           id="username"
@@ -17,8 +16,8 @@ return(
         />
         <span className="modal__error username-error">error here</span>
         <input
-          //ref={inputRef} 
-          className="modal__input-text"
+          type="password" //This causes the text to look like dots
+          className="login__input-text"
           name="password"
           placeholder="Password"
           id="password"
@@ -26,7 +25,7 @@ return(
         />
         <span className="modal__error password-error">error here</span>
 
-        <button type="submit" className="modal__submit-button">
+        <button type="submit" className="login__submit-button">
           Log in
         </button>
       </form>

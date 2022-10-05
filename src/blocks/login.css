@@ -1,0 +1,48 @@
+.login {
+}
+
+.login__submit-button {
+  /*contains all the styles for the button AND the button text */
+  /*w3c validator gives an error if you make the text a seperate <p> tag */
+  background: #ffffff;
+  border: none; /*remove default border styles */
+  border-radius: 2px;
+  min-height: 50px;
+  min-width: 358px;
+  margin: 216px auto 0px auto; /* top right bottom left */
+  font-family: 'Inter', 'Arial', sans-serif; /*fallback fonts */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+  cursor: pointer; /*change cursor to show user the element is interactive*/
+}
+
+.login__input-text {
+  /* this is the entire input box, you can put the text styles (font and font color) in here */
+  /*also the border styles */
+  margin: 0 auto;
+  min-width: 358px;
+  font-family: 'Inter', 'Arial', sans-serif; /*fallback fonts */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  background: #000000;
+  color: #cccccc;
+  border-style: none none solid none; /*get rid of all borders except bottom */
+  border-bottom: 1px solid rgba(204, 204, 204, 1); /*only way to set border opacity is via rgba-there's no "border opacity" property */
+  /*border opacity is 1 (fully opaque)..yes im pretty sure that's the default */
+}
+
+.login__input-text:last-of-type {
+  margin: 30px auto 0px auto;
+}
+
+.login__form {
+  /*make the input fields go as column instead of rows */
+  display: flex;
+  flex-direction: column;
+}
