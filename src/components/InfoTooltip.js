@@ -8,7 +8,7 @@ export function InfoTooltip({onClose, isOpen}) {
       <div className="infotooltip__content">
         <img className="infotooltip__image" src={redX} />
         {/*src={`url(${card.link})`}*/}
-        <button type="button" className="modal__close-button" onClick={onClose}>
+        <button type="button" className="infotooltip__close-button" onClick={onClose}>
           <img src={close} alt="X" />
         </button>
         <h2 className="infotooltip__text">Oops, something went wrong! Please try again.</h2>
