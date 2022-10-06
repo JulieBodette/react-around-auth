@@ -34,6 +34,14 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+
+  function handleSignUpClick(evt)
+  {
+    /*add calls to auth.js functions, determine if sign up was sucessful */
+    evt.preventDefault(); //prevent the page from immeidately refreshing and closing the popup
+    setIsInfoTooltipOpen(true);
+  }
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -52,6 +60,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsImagePopupOpen(false);
+    setIsInfoTooltipOpen(false);
     setTimeout(() => {
       setSelectedCard(null);
     }, 500);
@@ -180,8 +189,8 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header />
-          <InfoTooltip onClose={closeAllPopups}/>
-          <Register handleSubmit={handleEditAvatarClick}/>
+          
+          <Register handleSubmit={handleSignUpClick}/>
           <Login handleSubmit={handleEditAvatarClick}/>
           <Main
             onEditProfileClick={handleEditProfileClick}
@@ -225,6 +234,9 @@ function App() {
           onClose={closeAllPopups}
           isOpen={isImagePopupOpen}
         />
+
+<InfoTooltip onClose={closeAllPopups}
+          isOpen={isInfoTooltipOpen}/>
 
         {/*modal for the image popup*/}
         <div className="popup modal" id="image-popup">
