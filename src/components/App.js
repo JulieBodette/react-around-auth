@@ -20,6 +20,8 @@ import { AddPlacePopup } from "./AddPlacePopup";
 import {Login} from "./Login";
 import {Register} from "./Register";
 
+import {InfoTooltip} from "./InfoTooltip";
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -178,6 +180,7 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header />
+          <InfoTooltip onClose={closeAllPopups}/>
           <Register handleSubmit={handleEditAvatarClick}/>
           <Login handleSubmit={handleEditAvatarClick}/>
           <Main
