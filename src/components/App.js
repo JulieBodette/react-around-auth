@@ -22,6 +22,8 @@ import {Register} from "./Register";
 
 import {InfoTooltip} from "./InfoTooltip";
 
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -188,21 +190,30 @@ function App() {
     <UserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__content">
+        <BrowserRouter>
           <Header />
-          
-          <Register handleSubmit={handleSignUpClick}/>
-          <Login handleSubmit={handleEditAvatarClick}/>
-          <Main
-            onEditProfileClick={handleEditProfileClick}
-            onAddPlaceClick={handleEditPlaceClick}
-            onEditAvatarClick={handleEditAvatarClick}
-            onCardClick={handleCardClick}
-            cards={cards}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
-          />
-          <Footer />
+          <Switch>
+            <Route path="/register">
+              <Register handleSubmit={handleSignUpClick}/>
+            </Route>
+            <Route path="/login">
+              <Login handleSubmit={handleEditAvatarClick}/>
+            </Route>
+            <Route exact path="/">
+              <Main
+              onEditProfileClick={handleEditProfileClick}
+              onAddPlaceClick={handleEditPlaceClick}
+              onEditAvatarClick={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              cards={cards}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
+              />
+            </Route>
+          </Switch>
 
+            <Footer />
+        </BrowserRouter>
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
