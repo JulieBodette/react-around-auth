@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import close from "../images/CloseIcon.svg";
 
@@ -7,10 +8,10 @@ import { Footer } from "./Footer.js";
 import { Main } from "./Main.js";
 
 import { PopupWithForm } from "./PopupWithForm.js";
-
 import { ImagePopup } from "./ImagePopup.js";
 
 import apiObj from "../utils/api.js";
+import ProtectedRoute from "../utils/ProtectedRoute.js";
 
 import { UserContext } from "../contexts/CurrentUserContext";
 import { EditProfilePopup } from "./EditProfilePopup";
@@ -22,7 +23,7 @@ import {Register} from "./Register";
 
 import {InfoTooltip} from "./InfoTooltip";
 
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -201,7 +202,7 @@ function App() {
             <Header text="Sign Up"/>
               <Login handleSubmit={handleEditAvatarClick}/>
             </Route>
-            <Route exact path="/">
+            <ProtectedRoute exact path="/" loggedIn={true}>
             <Header text="Log out"/>
               <Main
               onEditProfileClick={handleEditProfileClick}
@@ -212,7 +213,7 @@ function App() {
               onCardLike={handleCardLike}
               onCardDelete={handleCardDelete}
               />
-            </Route>
+            </ProtectedRoute>
           </Switch>
 
             <Footer />
