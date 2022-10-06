@@ -191,15 +191,18 @@ function App() {
       <div className="page">
         <div className="page__content">
         <BrowserRouter>
-          <Header />
+          
           <Switch>
-            <Route path="/register">
+            <Route path="/signup">
+            <Header text="Log in"/>
               <Register handleSubmit={handleSignUpClick}/>
             </Route>
-            <Route path="/login">
+            <Route path="/signin">
+            <Header text="Sign Up"/>
               <Login handleSubmit={handleEditAvatarClick}/>
             </Route>
             <Route exact path="/">
+            <Header text="Log out"/>
               <Main
               onEditProfileClick={handleEditProfileClick}
               onAddPlaceClick={handleEditPlaceClick}
