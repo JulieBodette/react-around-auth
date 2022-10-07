@@ -71,7 +71,15 @@
   font-size: 14px;
   line-height: 17px;
   text-align: center;
+  /*remove link styles */
   color: #ffffff;
+  text-decoration: none; /*remove underline */
+  margin: 15px 0px 0px 0px; /* top right bottom left*/
+}
+
+.register__text:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 /*styles for 320px screen*/

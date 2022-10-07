@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 
 export function Register({ handleSubmit }) {
 
@@ -24,7 +25,7 @@ export function Register({ handleSubmit }) {
             <button type="submit" className="register__submit-button">
               Sign up
             </button>
-            <p className="register__text">Already a member? Log in here!</p>
+            <Link to="/signin" className="register__text">Already a member? Log in here!</Link>
           </form>
           );
     
