@@ -1,9 +1,6 @@
 //its useful to import the css here
 //import './header.css'
-import {
-  BrowserRouter,
-  Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 //we import the image that it needs
 import header from "../images/Header.svg";

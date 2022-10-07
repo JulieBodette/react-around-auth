@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 
 export function Login({ handleSubmit }) {
 
@@ -24,7 +25,7 @@ return(
         <button type="submit" className="login__submit-button">
           Log in
         </button>
-        <p className="login__text">Not a member yet? Sign up here!</p>
+        <Link className="login__text" to="/signup">Not a member yet? Sign up here!</Link>
       </form>
       );
 
