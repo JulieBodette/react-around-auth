@@ -3,7 +3,7 @@
 const BASEURL = "https://register.nomoreparties.co";
 const HEADERS = {"Content-Type": "application/json"}
 
-processResponse = (res) => {
+const processResponse = (res) => {
     if (res.ok) {
       return res.json();
     }
@@ -12,20 +12,20 @@ processResponse = (res) => {
 
 //TO DO: manually set info to the username and password for testing
 //ie {"password": "somepassword", "email": "email8@email.com"}
-function SignUp(info) {
+export function SignUp(info) {
     const url = BASEURL + "/signup";
     return fetch(url, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(info),
     })
-      .then(processResponse())
+      .then(processResponse)
       .catch((err) => {
         console.log(err); // log the error to the console
       });
   }
 
-  function SignIn(info) {
+  export function SignIn(info) {
     const url = BASEURL + "/signin";
     return fetch(url, {
       method: "POST",

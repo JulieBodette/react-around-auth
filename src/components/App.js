@@ -12,6 +12,7 @@ import { ImagePopup } from "./ImagePopup.js";
 
 import apiObj from "../utils/api.js";
 import ProtectedRoute from "../utils/ProtectedRoute.js";
+import {SignUp, SignIn} from "../utils/auth.js";
 
 import { UserContext } from "../contexts/CurrentUserContext";
 import { EditProfilePopup } from "./EditProfilePopup";
@@ -42,8 +43,13 @@ function App() {
   function handleSignUpClick(evt)
   {
     /*add calls to auth.js functions, determine if sign up was sucessful */
-    evt.preventDefault(); //prevent the page from immeidately refreshing and closing the popup
+    let testdata = {"password": "somepassword",
+    "email": "hellothisisfakeemail5@email.com"}
     setIsInfoTooltipOpen(true);
+    SignUp(testdata);
+    console.log("all signed up!");
+    evt.preventDefault(); //prevent the page from immeidately refreshing and closing the popup
+    
   }
 
   function handleEditAvatarClick() {
