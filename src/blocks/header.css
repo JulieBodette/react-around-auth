@@ -19,6 +19,14 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+  /*change default look of link */
+  color: #ffffff; /*make text white instead of purple */
+  text-decoration: none; /*remove underline */
+}
+
+.header__login-text:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 /*styles for 320px screen*/
