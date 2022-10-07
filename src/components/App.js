@@ -195,15 +195,16 @@ function App() {
           
           <Switch>
             <Route path="/signup">
-            <Header text="Log in"/>
+            <Header text="Log in" link="/signin"/>
               <Register handleSubmit={handleSignUpClick}/>
             </Route>
             <Route path="/signin">
-            <Header text="Sign Up"/>
+            <Header text="Sign Up" link="/signup"/>
               <Login handleSubmit={handleEditAvatarClick}/>
             </Route>
             <ProtectedRoute exact path="/" loggedIn={true}>
-            <Header text="Log out"/>
+            <Header text="Log out" link="/signin"/>
+            {/*note to self: make it so this actually logs the user out, in addition to switching the page they are on */}
               <Main
               onEditProfileClick={handleEditProfileClick}
               onAddPlaceClick={handleEditPlaceClick}
