@@ -40,16 +40,24 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
-  function handleSignUpClick(evt)
+  function handleSignUpClick(evt, data)
   {
+    console.log(data);
     /*add calls to auth.js functions, determine if sign up was sucessful */
     let testdata = {"password": "somepassword",
-    "email": "hellothisisfakeemail5@email.com"}
+    "email": "hellothisisfakeemail10@email.com"}
     setIsInfoTooltipOpen(true);
     SignUp(testdata);
     console.log("all signed up!");
     evt.preventDefault(); //prevent the page from immeidately refreshing and closing the popup
     
+  }
+
+  function handleSignInClick(info)
+  {
+    /*add calls to auth.js functions, determine if sign in was sucessful */
+    console.log(info);
+    console.log("this message is from app.js and it is tellung u u have signed in. congratz.");
   }
 
   function handleEditAvatarClick() {
@@ -206,7 +214,7 @@ function App() {
             </Route>
             <Route path="/signin">
             <Header text="Sign Up" link="/signup"/>
-              <Login handleSubmit={handleEditAvatarClick}/>
+              <Login handleLogin={handleSignInClick}/>
             </Route>
             <ProtectedRoute exact path="/" loggedIn={true}>
             <Header text="Log out" link="/signin"/>

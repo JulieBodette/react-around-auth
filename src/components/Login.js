@@ -1,6 +1,13 @@
 import {Link} from "react-router-dom";
 
-export function Login({ handleSubmit }) {
+
+
+export function Login({ handleLogin }) {
+  const handleSubmit = (e) => {
+    // Prevent the browser from navigating to the form address
+    e.preventDefault();
+    handleLogin("put the username and password here");
+  }
 
 return(
 <form name="loginform" className="login__form login" onSubmit={handleSubmit}>
