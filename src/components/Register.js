@@ -1,11 +1,27 @@
 import {Link} from "react-router-dom";
+import React, { useState } from "react";
 
 export function Register({ handleSignUp }) {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
+  }
+
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
+  }
+
+
 
   const handleSubmit = (e) => {
     // Prevent the browser from navigating to the form address
     e.preventDefault();
-    handleSignUp("put the username and password here. hi from register. ");
+    let stuff = {"password": password,
+    "email": email}
+    handleSignUp(stuff);
   }
 
     return(
@@ -16,6 +32,8 @@ export function Register({ handleSignUp }) {
               name="email"
               placeholder="Email"
               id="email"
+              value={email}
+              onChange={handleEmailChange}
               required
             />
             {/*Could add an error field here- similar to the modal errors- maybe check to make sure the test is an email (has @ sign?) */}
@@ -25,6 +43,8 @@ export function Register({ handleSignUp }) {
               name="password"
               placeholder="Password"
               id="password"
+              value={password}
+              onChange={handlePasswordChange}
               required
             />
     

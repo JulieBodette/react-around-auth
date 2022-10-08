@@ -44,13 +44,9 @@ function App() {
   {
     console.log(info);
     /*add calls to auth.js functions, determine if sign up was sucessful */
-    let testdata = {"password": "somepassword",
-    "email": "hellothisisfakeemail10@email.com"}
     setIsInfoTooltipOpen(true);
-    SignUp(testdata);
+    SignUp(info);
     console.log("all signed up!");
-    
-    
   }
 
   function handleSignInClick(info)
