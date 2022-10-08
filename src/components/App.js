@@ -40,16 +40,16 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
-  function handleSignUpClick(evt, data)
+  function handleSignUpClick(info)
   {
-    console.log(data);
+    console.log(info);
     /*add calls to auth.js functions, determine if sign up was sucessful */
     let testdata = {"password": "somepassword",
     "email": "hellothisisfakeemail10@email.com"}
     setIsInfoTooltipOpen(true);
     SignUp(testdata);
     console.log("all signed up!");
-    evt.preventDefault(); //prevent the page from immeidately refreshing and closing the popup
+    
     
   }
 
@@ -210,7 +210,7 @@ function App() {
           <Switch>
             <Route path="/signup">
             <Header text="Log in" link="/signin"/>
-              <Register handleSubmit={handleSignUpClick}/>
+              <Register handleSignUp={handleSignUpClick}/>
             </Route>
             <Route path="/signin">
             <Header text="Sign Up" link="/signup"/>

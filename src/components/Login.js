@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 
 export function Login({ handleLogin }) {
   const handleSubmit = (e) => {
-    // Prevent the browser from navigating to the form address
-    e.preventDefault();
-    handleLogin("put the username and password here");
+    // Prevent the browser from navigating to the form address aka...
+    e.preventDefault(); //prevent the page from immeidately refreshing and closing the popup
+    handleLogin("put the username and password here. hi from login.");
   }
 
 return(

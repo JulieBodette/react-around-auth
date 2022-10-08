@@ -1,6 +1,12 @@
 import {Link} from "react-router-dom";
 
-export function Register({ handleSubmit }) {
+export function Register({ handleSignUp }) {
+
+  const handleSubmit = (e) => {
+    // Prevent the browser from navigating to the form address
+    e.preventDefault();
+    handleSignUp("put the username and password here. hi from register. ");
+  }
 
     return(
     <form name="registerform" className="register__form register" onSubmit={handleSubmit}>
