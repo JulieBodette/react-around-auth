@@ -262,7 +262,7 @@ function App() {
         />
 
 <InfoTooltip onClose={closeAllPopups}
-          isOpen={isInfoTooltipOpen}/>
+          isOpen={isInfoTooltipOpen} success={true}/>
 
         {/*modal for the image popup*/}
         <div className="popup modal" id="image-popup">
