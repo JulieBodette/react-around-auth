@@ -48,18 +48,14 @@ function App() {
     /*add calls to auth.js functions, determine if sign up was sucessful */
     //SignUp returns a resolved promise or a rejected promise (error)
     signUp(info)
-    .then((res) => {setRegisterSuccess(true);
-      setIsInfoTooltipOpen(true);
+    .then((res) => {
+      setRegisterSuccess(true);
       console.log("success"); })
     .catch((err)=> {
       setRegisterSuccess(false);
-      setIsInfoTooltipOpen(true);
       console.log("fail");
-    });
- 
-    
-    console.log("all signed up!");
-
+    })
+    .finally(()=>{setIsInfoTooltipOpen(true);});
   }
 
   function handleSignInClick(info)
