@@ -12,7 +12,7 @@ import { ImagePopup } from "./ImagePopup.js";
 
 import apiObj from "../utils/api.js";
 import ProtectedRoute from "../utils/ProtectedRoute.js";
-import {SignUp, SignIn} from "../utils/auth.js";
+import {signUp, signIn} from "../utils/auth.js";
 
 import { UserContext } from "../contexts/CurrentUserContext";
 import { EditProfilePopup } from "./EditProfilePopup";
@@ -40,13 +40,26 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
+  const [registerSuccess, setRegisterSuccess] = useState(false);
+
   function handleSignUpClick(info)
   {
     console.log(info);
     /*add calls to auth.js functions, determine if sign up was sucessful */
-    setIsInfoTooltipOpen(true);
-    SignUp(info);
+    //SignUp returns a resolved promise or a rejected promise (error)
+    signUp(info)
+    .then((res) => {setRegisterSuccess(true);
+      setIsInfoTooltipOpen(true);
+      console.log("success"); })
+    .catch((err)=> {
+      setRegisterSuccess(false);
+      setIsInfoTooltipOpen(true);
+      console.log("fail");
+    });
+ 
+    
     console.log("all signed up!");
+
   }
 
   function handleSignInClick(info)
@@ -262,7 +275,7 @@ function App() {
         />
 
 <InfoTooltip onClose={closeAllPopups}
-          isOpen={isInfoTooltipOpen} success={true}/>
+          isOpen={isInfoTooltipOpen} success={registerSuccess}/>
 
         {/*modal for the image popup*/}
         <div className="popup modal" id="image-popup">

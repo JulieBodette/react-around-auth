@@ -1,4 +1,3 @@
-//TO DO: TEST THIS CODE!!!
 
 const BASEURL = "https://register.nomoreparties.co";
 const HEADERS = {"Content-Type": "application/json"}
@@ -7,12 +6,10 @@ const processResponse = (res) => {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Error: ${res.status}`);
+    return Promise.reject(`Error: ${res.status}`); //same as throwing error- except the object that goes into the catch block is a string, not an error object
   };
 
-//TO DO: manually set info to the username and password for testing
-//ie {"password": "somepassword", "email": "email8@email.com"}
-export function SignUp(info) {
+export function signUp(info) {
     const url = BASEURL + "/signup";
     return fetch(url, {
       method: "POST",
@@ -22,10 +19,11 @@ export function SignUp(info) {
       .then(processResponse)
       .catch((err) => {
         console.log(err); // log the error to the console
+        return Promise.reject(err); //pass the error along to the next .catch as if we hadn't caught it
       });
   }
 
-  export function SignIn(info) {
+  export function signIn(info) {
     const url = BASEURL + "/signin";
     return fetch(url, {
       method: "POST",
