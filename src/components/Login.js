@@ -1,12 +1,23 @@
 import {Link} from "react-router-dom";
-
-
+import React, { useState } from "react";
 
 export function Login({ handleLogin }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
+  }
+
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
+  }
+
   const handleSubmit = (e) => {
     // Prevent the browser from navigating to the form address aka...
     e.preventDefault(); //prevent the page from immeidately refreshing and closing the popup
-    handleLogin("put the username and password here. hi from login.");
+    handleLogin({"password": password,
+    "email": email});
   }
 
 return(
@@ -17,6 +28,8 @@ return(
           name="email"
           placeholder="Email"
           id="email"
+          value={email}
+          onChange={handleEmailChange}
           required
         />
         {/*Could add an error field here- similar to the modal errors- maybe check to make sure the test is an email (has @ sign?) */}
@@ -26,6 +39,8 @@ return(
           name="password"
           placeholder="Password"
           id="password"
+          value={password}
+          onChange={handlePasswordChange}
           required
         />
 

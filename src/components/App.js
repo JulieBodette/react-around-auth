@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import React, { useState, useCallback  } from "react";
+import {Route, Switch, Redirect, useHistory,} from "react-router-dom";
 
 import close from "../images/CloseIcon.svg";
 
@@ -41,6 +41,10 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
   const [registerSuccess, setRegisterSuccess] = useState(false);
+  const history = useHistory();
+
+
+
 
   function handleSignUpClick(info)
   {
@@ -58,12 +62,19 @@ function App() {
     .finally(()=>{setIsInfoTooltipOpen(true);});
   }
 
-  function handleSignInClick(info)
+  //useCallback means it will only re-render when whatever is in [] changes
+  //in this case it only re-renders when history is changed.
+ const handleSignInClick = useCallback((info)=>
   {
     /*add calls to auth.js functions, determine if sign in was sucessful */
     console.log(info);
-    console.log("this message is from app.js and it is tellung u u have signed in. congratz.");
-  }
+    signIn(info).then(() =>
+    {
+      console.log("this message is from app.js and it is tellung u u have signed in. congratz.");
+   history.push('/'); // After your login action you can redirect with this command:
+  })
+    .catch((err)=>{console.log(err);})
+  }, [history]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -209,9 +220,7 @@ function App() {
   return (
     <UserContext.Provider value={currentUser}>
       <div className="page">
-        <div className="page__content">
-        <BrowserRouter>
-          
+        <div className="page__content">   
           <Switch>
             <Route path="/signup">
             <Header text="Log in" link="/signin"/>
@@ -237,7 +246,6 @@ function App() {
           </Switch>
 
             <Footer />
-        </BrowserRouter>
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}

@@ -30,9 +30,10 @@ export function signUp(info) {
       headers: HEADERS,
       body: JSON.stringify(info),
     })
-      .then(processResponse())
+    .then(processResponse)
       .catch((err) => {
         console.log(err); // log the error to the console
+        return Promise.reject(err); //pass the error along to the next .catch as if we hadn't caught it
       });
   }
 
