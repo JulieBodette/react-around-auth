@@ -18,10 +18,9 @@ export function Register({ handleSignUp }) {
 
   const handleSubmit = (e) => {
     // Prevent the browser from navigating to the form address
-    e.preventDefault();
-    let stuff = {"password": password,
-    "email": email}
-    handleSignUp(stuff);
+    e.preventDefault(); 
+    handleSignUp({"password": password,
+    "email": email});
   }
 
     return(
