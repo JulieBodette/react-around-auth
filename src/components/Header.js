@@ -11,7 +11,7 @@ export function Header({text, link}) {
       <img className="header__image" src={header} alt="Around the US" />
       {/*we acess the image via variable name {header}*/}
       
-        <p className="header__email">Email here</p>
+        <p className="header__email">email here</p>
         <Link to={link} className="header__login-text">{text}</Link>
 
       

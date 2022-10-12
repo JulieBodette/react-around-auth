@@ -2,17 +2,19 @@
   max-width: 880px; /*based on 1280px figma */
   margin: 0px auto 40px auto; /* top right bottom left */
   border-bottom: 1px solid rgba(84, 84, 84, 0.7); /*need rgba to set opacity */
-  display: flex;
-  flex-direction: row;
-
-  justify-content: space-between;
+  display: grid;
+  grid-template-areas: 'image email login-text';
+  grid-template-columns: 173px auto 70px; /*set sizes for the columns on the far left and right, middle expands to fill the space */
+  grid-column-gap: 24px; /*spacing between email and login-text*/
 }
 
 .header__image {
+  grid-area: image;
   margin: 45px 0px 41px 0px; /* top right bottom left */
 }
 
 .header__email {
+  grid-area: email;
   font-family: 'Inter', 'Arial', sans-serif; /*fallback fonts */
   align-self: flex-end;
   font-style: normal;
@@ -25,6 +27,7 @@
 }
 
 .header__login-text {
+  grid-area: login-text;
   margin-bottom: 46px;
   align-self: flex-end;
   font-family: 'Inter', 'Arial', sans-serif; /*fallback fonts */
