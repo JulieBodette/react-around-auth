@@ -48,6 +48,7 @@ function handleLogOutClick()
 {
   console.log("you logged out, yay");
   setIsLoggedIn(false);
+  console.log("is logged in set to ", isLoggedIn);
   localStorage.removeItem('token');
 }
 
@@ -78,6 +79,7 @@ function handleLogOutClick()
     {
       console.log("this message is from app.js and it is tellung u u have signed in. congratz.");
       setIsLoggedIn(true);
+      console.log("is logged in set to ", isLoggedIn);
    history.push('/'); // After your login action you can redirect with this command:
   })
     .catch((err)=>{console.log(err);})
@@ -238,6 +240,7 @@ function handleLogOutClick()
     .then(()=>{
       console.log("checked the token");
       setIsLoggedIn(true);
+      console.log("in UseEffect, is logged in set to ", isLoggedIn);
     })
     .catch((err)=>{console.log(err)});
   }//end if
@@ -256,7 +259,7 @@ function handleLogOutClick()
               <Login handleLogin={handleSignInClick}/>
             </Route>
             <ProtectedRoute exact path="/" loggedIn={isLoggedIn}>
-            <Header text="Log out" link="/signin" onClick={handleLogOutClick}/>
+            <Header text="Log out" link="/signin" onClick={handleLogOutClick} email="email set in app.js"/>
             {/*note to self: make it so this actually logs the user out, in addition to switching the page they are on */}
               <Main
               onEditProfileClick={handleEditProfileClick}
