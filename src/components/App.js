@@ -40,6 +40,7 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const history = useHistory();
 
@@ -71,6 +72,7 @@ function App() {
     signIn(info).then(() =>
     {
       console.log("this message is from app.js and it is tellung u u have signed in. congratz.");
+      setIsLoggedIn(true);
    history.push('/'); // After your login action you can redirect with this command:
   })
     .catch((err)=>{console.log(err);})
@@ -230,7 +232,7 @@ function App() {
             <Header text="Sign Up" link="/signup"/>
               <Login handleLogin={handleSignInClick}/>
             </Route>
-            <ProtectedRoute exact path="/" loggedIn={true}>
+            <ProtectedRoute exact path="/" loggedIn={isLoggedIn}>
             <Header text="Log out" link="/signin"/>
             {/*note to self: make it so this actually logs the user out, in addition to switching the page they are on */}
               <Main
