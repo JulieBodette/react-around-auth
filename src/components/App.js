@@ -12,7 +12,7 @@ import { ImagePopup } from "./ImagePopup.js";
 
 import apiObj from "../utils/api.js";
 import ProtectedRoute from "../utils/ProtectedRoute.js";
-import {signUp, signIn} from "../utils/auth.js";
+import {signUp, signIn, checkToken} from "../utils/auth.js";
 
 import { UserContext } from "../contexts/CurrentUserContext";
 import { EditProfilePopup } from "./EditProfilePopup";
@@ -44,7 +44,11 @@ function App() {
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const history = useHistory();
 
-
+function handleLogOutClick()
+{
+  console.log("you logged out, yay");
+  setIsLoggedIn(false);
+}
 
 
   function handleSignUpClick(info)
@@ -233,7 +237,7 @@ function App() {
               <Login handleLogin={handleSignInClick}/>
             </Route>
             <ProtectedRoute exact path="/" loggedIn={isLoggedIn}>
-            <Header text="Log out" link="/signin"/>
+            <Header text="Log out" link="/signin" onClick={handleLogOutClick}/>
             {/*note to self: make it so this actually logs the user out, in addition to switching the page they are on */}
               <Main
               onEditProfileClick={handleEditProfileClick}
