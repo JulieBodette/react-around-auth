@@ -40,7 +40,7 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState();
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const history = useHistory();
 
@@ -224,6 +224,24 @@ function handleLogOutClick()
       });
   }, []); //empty array tells it to only do once (when it is mounted)
 
+
+
+  React.useEffect(() => {
+    // do token check and set state variables
+
+    //check to make sure that there is a token in localStorage
+    const token = localStorage.getItem('token');
+    if(token)
+    {
+    //check to make sure the token is valid
+    checkToken()
+    .then(()=>{
+      console.log("checked the token");
+      setIsLoggedIn(true);
+    })
+    .catch((err)=>{console.log(err)});
+  }//end if
+  }, [])
   return (
     <UserContext.Provider value={currentUser}>
       <div className="page">
