@@ -54,8 +54,10 @@ export function signUp(info) {
 
     })
     .then(res => res.json())
-    .then((data) => {
-     console.log(data.email);
+    .then((output) => {
+     console.log(output.data.email);
+     //data contains id and email
+     return output.data.email;
      })
       .catch((err) => {
         console.log(err); // log the error to the console
