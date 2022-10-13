@@ -48,6 +48,7 @@ function handleLogOutClick()
 {
   console.log("you logged out, yay");
   setIsLoggedIn(false);
+  localStorage.removeItem('token');
 }
 
 
