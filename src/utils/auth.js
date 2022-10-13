@@ -43,5 +43,26 @@ export function signUp(info) {
       });
   }
 
+  export function checkToken() {
+    const url = BASEURL + "/users/me";
+    return fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization" : `Bearer ${localStorage.getItem('token')}`
+    }
+
+    })
+    .then(res => res.json())
+    .then((data) => {
+     console.log(data.email);
+     })
+      .catch((err) => {
+        console.log(err); // log the error to the console
+        return Promise.reject(err); //pass the error along to the next .catch as if we hadn't caught it
+      });
+    
+  }
+
 
 
