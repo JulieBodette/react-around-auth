@@ -11,7 +11,7 @@ import { PopupWithForm } from "./PopupWithForm.js";
 import { ImagePopup } from "./ImagePopup.js";
 
 import apiObj from "../utils/api.js";
-import ProtectedRoute from "../utils/ProtectedRoute.js";
+import ProtectedRoute from "./ProtectedRoute.js";
 import {signUp, signIn, checkToken} from "../utils/auth.js";
 
 import { UserContext } from "../contexts/CurrentUserContext";
