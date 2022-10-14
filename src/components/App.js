@@ -42,6 +42,7 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [registerSuccess, setRegisterSuccess] = useState(false);
+  const [email, setEmail] = useState(""); //we get the email from the token
   const history = useHistory();
 
 function handleLogOutClick()
@@ -79,6 +80,7 @@ function handleLogOutClick()
     {
       console.log("this message is from app.js and it is tellung u u have signed in. congratz.");
       setIsLoggedIn(true);
+      getEmail();
       console.log("is logged in set to ", isLoggedIn);
    history.push('/'); // After your login action you can redirect with this command:
   })
@@ -240,11 +242,23 @@ function handleLogOutClick()
     .then(()=>{
       console.log("checked the token");
       setIsLoggedIn(true);
+      getEmail();
       console.log("in UseEffect, is logged in set to ", isLoggedIn);
     })
     .catch((err)=>{console.log(err)});
   }//end if
-  }, [])
+  }, [history])
+
+
+  function getEmail()
+  {
+    checkToken()
+    .then((mail)=>{
+      console.log("ingetEmail, email is", mail)
+      setEmail(mail);
+    })
+    .catch((err)=>{console.log(err)});
+  }
   return (
     <UserContext.Provider value={currentUser}>
       <div className="page">
@@ -259,7 +273,7 @@ function handleLogOutClick()
               <Login handleLogin={handleSignInClick}/>
             </Route>
             <ProtectedRoute exact path="/" loggedIn={isLoggedIn}>
-            <Header text="Log out" link="/signin" onClick={handleLogOutClick} email="email set in app.js"/>
+            <Header text="Log out" link="/signin" onClick={handleLogOutClick} email={email}/>
             {/*note to self: make it so this actually logs the user out, in addition to switching the page they are on */}
               <Main
               onEditProfileClick={handleEditProfileClick}
