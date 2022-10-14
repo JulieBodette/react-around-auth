@@ -244,6 +244,7 @@ function handleLogOutClick()
       setIsLoggedIn(true);
       getEmail();
       console.log("in UseEffect, is logged in set to ", isLoggedIn);
+      history.push('/');
     })
     .catch((err)=>{console.log(err)});
   }//end if
