@@ -150,8 +150,8 @@ function App() {
       .uploadCard(info)
       .then((newCard) => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
-      .then(closeAllPopups())
       .catch((err) => {
         console.log(err); // log the error to the console
       });
