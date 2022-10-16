@@ -14,12 +14,7 @@ export function signUp(info) {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify(info),
-  })
-    .then(processResponse)
-    .catch((err) => {
-      console.log(err); // log the error to the console
-      return Promise.reject(err); //pass the error along to the next .catch as if we hadn't caught it
-    });
+  }).then(processResponse);
 }
 
 export function signIn(info) {
@@ -34,10 +29,6 @@ export function signIn(info) {
       // saving the token
       localStorage.setItem('token', data.token);
       console.log(data.token);
-    })
-    .catch((err) => {
-      console.log(err); // log the error to the console
-      return Promise.reject(err); //pass the error along to the next .catch as if we hadn't caught it
     });
 }
 
@@ -55,9 +46,5 @@ export function checkToken() {
       console.log(output.data.email);
       //data contains id and email
       return output.data.email;
-    })
-    .catch((err) => {
-      console.log(err); // log the error to the console
-      return Promise.reject(err); //pass the error along to the next .catch as if we hadn't caught it
     });
 }

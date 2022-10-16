@@ -61,7 +61,7 @@ function App() {
       })
       .catch((err) => {
         setRegisterSuccess(false);
-        console.log('fail');
+        console.log(err);
       })
       .finally(() => {
         setIsInfoTooltipOpen(true);
