@@ -40,7 +40,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://JulieBodette.github.io/around-react",
+  "homepage": "https://juliebodette.github.io/react-around-auth/",
   "devDependencies": {
     "gh-pages": "^4.0.0"
   }
