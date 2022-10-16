@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import avatar from "../images/Avatar.jpg";
-import edit from "../images/Edit.svg";
-import plus from "../images/Plus.svg";
+import React, { useState, useEffect } from 'react';
+import avatar from '../images/Avatar.jpg';
+import edit from '../images/Edit.svg';
+import plus from '../images/Plus.svg';
 
-import { Card } from "./Card.js";
+import { Card } from './Card.js';
 
-import { UserContext } from "../contexts/CurrentUserContext";
+import { UserContext } from '../contexts/CurrentUserContext';
 
 export function Main({
   onEditProfileClick,

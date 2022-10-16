@@ -1,30 +1,28 @@
-import React, { useState, useCallback  } from "react";
-import {Route, Switch, Redirect, useHistory,} from "react-router-dom";
+import React, { useState, useCallback } from 'react';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 
-import close from "../images/CloseIcon.svg";
+import close from '../images/CloseIcon.svg';
 
-import { Header } from "./Header.js";
-import { Footer } from "./Footer.js";
-import { Main } from "./Main.js";
+import { Header } from './Header.js';
+import { Footer } from './Footer.js';
+import { Main } from './Main.js';
 
-import { PopupWithForm } from "./PopupWithForm.js";
-import { ImagePopup } from "./ImagePopup.js";
+import { PopupWithForm } from './PopupWithForm.js';
+import { ImagePopup } from './ImagePopup.js';
 
-import apiObj from "../utils/api.js";
-import ProtectedRoute from "./ProtectedRoute.js";
-import {signUp, signIn, checkToken} from "../utils/auth.js";
+import apiObj from '../utils/api.js';
+import ProtectedRoute from './ProtectedRoute.js';
+import { signUp, signIn, checkToken } from '../utils/auth.js';
 
-import { UserContext } from "../contexts/CurrentUserContext";
-import { EditProfilePopup } from "./EditProfilePopup";
-import { EditAvatarPopup } from "./EditAvatarPopup";
-import { AddPlacePopup } from "./AddPlacePopup";
+import { UserContext } from '../contexts/CurrentUserContext';
+import { EditProfilePopup } from './EditProfilePopup';
+import { EditAvatarPopup } from './EditAvatarPopup';
+import { AddPlacePopup } from './AddPlacePopup';
 
-import {Login} from "./Login";
-import {Register} from "./Register";
+import { Login } from './Login';
+import { Register } from './Register';
 
-import {InfoTooltip} from "./InfoTooltip";
-
-
+import { InfoTooltip } from './InfoTooltip';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -42,50 +40,56 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [registerSuccess, setRegisterSuccess] = useState(false);
-  const [email, setEmail] = useState(""); //we get the email from the token
+  const [email, setEmail] = useState(''); //we get the email from the token
   const history = useHistory();
 
-function handleLogOutClick()
-{
-  console.log("you logged out, yay");
-  setIsLoggedIn(false);
-  console.log("is logged in set to ", isLoggedIn);
-  localStorage.removeItem('token');
-}
+  function handleLogOutClick() {
+    console.log('you logged out, yay');
+    setIsLoggedIn(false);
+    console.log('is logged in set to ', isLoggedIn);
+    localStorage.removeItem('token');
+  }
 
-
-  function handleSignUpClick(info)
-  {
+  function handleSignUpClick(info) {
     console.log(info);
     /*add calls to auth.js functions, determine if sign up was sucessful */
     //SignUp returns a resolved promise or a rejected promise (error)
     signUp(info)
-    .then((res) => {
-      setRegisterSuccess(true);
-      console.log("success"); })
-    .catch((err)=> {
-      setRegisterSuccess(false);
-      console.log("fail");
-    })
-    .finally(()=>{setIsInfoTooltipOpen(true);});
+      .then((res) => {
+        setRegisterSuccess(true);
+        console.log('success');
+      })
+      .catch((err) => {
+        setRegisterSuccess(false);
+        console.log('fail');
+      })
+      .finally(() => {
+        setIsInfoTooltipOpen(true);
+      });
   }
 
   //useCallback means it will only re-render when whatever is in [] changes
   //in this case it only re-renders when history is changed.
- const handleSignInClick = useCallback((info)=>
-  {
-    /*add calls to auth.js functions, determine if sign in was sucessful */
-    console.log(info);
-    signIn(info).then(() =>
-    {
-      console.log("this message is from app.js and it is tellung u u have signed in. congratz.");
-      setIsLoggedIn(true);
-      getEmail();
-      console.log("is logged in set to ", isLoggedIn);
-   history.push('/'); // After your login action you can redirect with this command:
-  })
-    .catch((err)=>{console.log(err);})
-  }, [history]);
+  const handleSignInClick = useCallback(
+    (info) => {
+      /*add calls to auth.js functions, determine if sign in was sucessful */
+      console.log(info);
+      signIn(info)
+        .then(() => {
+          console.log(
+            'this message is from app.js and it is tellung u u have signed in. congratz.'
+          );
+          setIsLoggedIn(true);
+          getEmail();
+          console.log('is logged in set to ', isLoggedIn);
+          history.push('/'); // After your login action you can redirect with this command:
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    [history]
+  );
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -228,67 +232,71 @@ function handleLogOutClick()
       });
   }, []); //empty array tells it to only do once (when it is mounted)
 
-
-
   React.useEffect(() => {
     // do token check and set state variables
 
     //check to make sure that there is a token in localStorage
     const token = localStorage.getItem('token');
-    if(token)
-    {
-    //check to make sure the token is valid
-    checkToken()
-    .then(()=>{
-      console.log("checked the token");
-      setIsLoggedIn(true);
-      getEmail();
-      console.log("in UseEffect, is logged in set to ", isLoggedIn);
-      history.push('/');
-    })
-    .catch((err)=>{console.log(err)});
-  }//end if
-  }, [history])
+    if (token) {
+      //check to make sure the token is valid
+      checkToken()
+        .then(() => {
+          console.log('checked the token');
+          setIsLoggedIn(true);
+          getEmail();
+          console.log('in UseEffect, is logged in set to ', isLoggedIn);
+          history.push('/');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } //end if
+  }, [history]);
 
-
-  function getEmail()
-  {
+  function getEmail() {
     checkToken()
-    .then((mail)=>{
-      console.log("ingetEmail, email is", mail)
-      setEmail(mail);
-    })
-    .catch((err)=>{console.log(err)});
+      .then((mail) => {
+        console.log('ingetEmail, email is', mail);
+        setEmail(mail);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   return (
     <UserContext.Provider value={currentUser}>
       <div className="page">
-        <div className="page__content">   
+        <div className="page__content">
           <Switch>
             <Route path="/signup">
-            <Header text="Log in" link="/signin"/>
-              <Register handleSignUp={handleSignUpClick}/>
+              <Header text="Log in" link="/signin" />
+              <Register handleSignUp={handleSignUpClick} />
             </Route>
             <Route path="/signin">
-            <Header text="Sign Up" link="/signup"/>
-              <Login handleLogin={handleSignInClick}/>
+              <Header text="Sign Up" link="/signup" />
+              <Login handleLogin={handleSignInClick} />
             </Route>
             <ProtectedRoute exact path="/" loggedIn={isLoggedIn}>
-            <Header text="Log out" link="/signin" onClick={handleLogOutClick} email={email}/>
-            {/*note to self: make it so this actually logs the user out, in addition to switching the page they are on */}
+              <Header
+                text="Log out"
+                link="/signin"
+                onClick={handleLogOutClick}
+                email={email}
+              />
+              {/*note to self: make it so this actually logs the user out, in addition to switching the page they are on */}
               <Main
-              onEditProfileClick={handleEditProfileClick}
-              onAddPlaceClick={handleEditPlaceClick}
-              onEditAvatarClick={handleEditAvatarClick}
-              onCardClick={handleCardClick}
-              cards={cards}
-              onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+                onEditProfileClick={handleEditProfileClick}
+                onAddPlaceClick={handleEditPlaceClick}
+                onEditAvatarClick={handleEditAvatarClick}
+                onCardClick={handleCardClick}
+                cards={cards}
+                onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
               />
             </ProtectedRoute>
           </Switch>
 
-            <Footer />
+          <Footer />
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
@@ -321,8 +329,11 @@ function handleLogOutClick()
           isOpen={isImagePopupOpen}
         />
 
-<InfoTooltip onClose={closeAllPopups}
-          isOpen={isInfoTooltipOpen} success={registerSuccess}/>
+        <InfoTooltip
+          onClose={closeAllPopups}
+          isOpen={isInfoTooltipOpen}
+          success={registerSuccess}
+        />
 
         {/*modal for the image popup*/}
         <div className="popup modal" id="image-popup">

@@ -1,5 +1,5 @@
-import { PopupWithForm } from "./PopupWithForm.js";
-import React, { useEffect } from "react";
+import { PopupWithForm } from './PopupWithForm.js';
+import React, { useEffect } from 'react';
 export function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   const inputRef = React.useRef();
   function handleSubmit(e) {
@@ -13,7 +13,7 @@ export function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   //set the image link to empty string when the popup is opened/closed
   //this will make it reset so the user does not see the old one
   useEffect(() => {
-    inputRef.current.value = "";
+    inputRef.current.value = '';
   }, [isOpen]);
 
   return (

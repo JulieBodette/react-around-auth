@@ -1,7 +1,7 @@
-import trash from "../images/Trash.svg";
-import heartDisabled from "../images/Heart_disabled.svg";
-import React from "react";
-import { UserContext } from "../contexts/CurrentUserContext";
+import trash from '../images/Trash.svg';
+import heartDisabled from '../images/Heart_disabled.svg';
+import React from 'react';
+import { UserContext } from '../contexts/CurrentUserContext';
 
 export function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   //we must send it the card that we clicked on so it knows what image to display
@@ -56,7 +56,7 @@ export function Card({ card, onCardClick, onCardLike, onCardDelete }) {
               src={heartDisabled}
               alt="like"
               className={`element__like-image ${
-                isLiked ? "element__like_active" : ""
+                isLiked ? 'element__like_active' : ''
               }`}
             />
             {/*add the element__like_active class if it is liked by the current user. ps u gotta put the entire thing in {} bc its JSX code*/}
