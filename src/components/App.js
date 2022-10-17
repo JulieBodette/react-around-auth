@@ -23,6 +23,7 @@ import { Login } from './Login';
 import { Register } from './Register';
 
 import { InfoTooltip } from './InfoTooltip';
+import { AuthorizationError } from '../utils/errors.js';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -75,6 +76,18 @@ function App() {
       /*add calls to auth.js functions, determine if sign in was sucessful */
       console.log(info);
       signIn(info)
+        .then((data) => {
+          // saving the token
+          if (data?.token) {
+            localStorage.setItem('token', data.token);
+            console.log(data.token);
+          } else {
+            //add error here
+            throw new AuthorizationError(
+              'error- username and/or password was wrong'
+            );
+          }
+        })
         .then(() => {
           console.log(
             'this message is from app.js and it is tellung u u have signed in. congratz.'
@@ -85,7 +98,10 @@ function App() {
           history.push('/'); // After your login action you can redirect with this command:
         })
         .catch((err) => {
+          //catch does not catch 400 level errors- only 500. a 400 level error will be a resolved promise and has a message.
+          //this is why we had to manually throw a new AuthorizationError
           console.log(err);
+          //TODO: show a popup that says "your username or passord is wrong"
         });
     },
     [history]

@@ -23,13 +23,7 @@ export function signIn(info) {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify(info),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      // saving the token
-      localStorage.setItem('token', data.token);
-      console.log(data.token);
-    });
+  }).then((res) => res.json());
 }
 
 export function checkToken() {
