@@ -2,7 +2,6 @@
   background-color: #000000;
   color: white;
   /*default font is colored white */
-  display: flex; /*margin: auto works inside flex. margin:auto does not always work inside display:block */
   justify-content: center;
 }
 
