@@ -40,7 +40,7 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState();
-  const [registerSuccess, setRegisterSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false); //used to determine if InfoToolTip displays a sucess or failure message
   const [email, setEmail] = useState(''); //we get the email from the token
   const history = useHistory();
 
@@ -57,11 +57,11 @@ function App() {
     //SignUp returns a resolved promise or a rejected promise (error)
     signUp(info)
       .then((res) => {
-        setRegisterSuccess(true);
+        setSuccessMessage(true);
         console.log('success');
       })
       .catch((err) => {
-        setRegisterSuccess(false);
+        setSuccessMessage(false);
         console.log(err);
       })
       .finally(() => {
@@ -82,7 +82,7 @@ function App() {
             localStorage.setItem('token', data.token);
             console.log(data.token);
           } else {
-            //add error here
+            setSuccessMessage(false); //prepare the InfoToolTip so that it has failure message
             throw new AuthorizationError(
               'error- username and/or password was wrong'
             );
@@ -102,6 +102,8 @@ function App() {
           //this is why we had to manually throw a new AuthorizationError
           console.log(err);
           //TODO: show a popup that says "your username or passord is wrong"
+          //currently displays a generic error message
+          setIsInfoTooltipOpen(true);
         });
     },
     [history]
@@ -348,7 +350,7 @@ function App() {
         <InfoTooltip
           onClose={closeAllPopups}
           isOpen={isInfoTooltipOpen}
-          success={registerSuccess}
+          success={successMessage}
         />
 
         {/*modal for the image popup*/}
