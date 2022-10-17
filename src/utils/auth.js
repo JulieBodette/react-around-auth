@@ -37,7 +37,6 @@ export function checkToken() {
   })
     .then((res) => res.json())
     .then((output) => {
-      console.log(output.data.email);
       //data contains id and email
       return output.data.email;
     });

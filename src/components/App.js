@@ -45,20 +45,16 @@ function App() {
   const history = useHistory();
 
   function handleLogOutClick() {
-    console.log('you logged out, yay');
     setIsLoggedIn(false);
-    console.log('is logged in set to ', isLoggedIn);
     localStorage.removeItem('token');
   }
 
   function handleSignUpClick(info) {
-    console.log(info);
     /*add calls to auth.js functions, determine if sign up was sucessful */
     //SignUp returns a resolved promise or a rejected promise (error)
     signUp(info)
       .then((res) => {
         setSuccessMessage(true);
-        console.log('success');
       })
       .catch((err) => {
         setSuccessMessage(false);
@@ -73,14 +69,11 @@ function App() {
   //in this case it only re-renders when history is changed.
   const handleSignInClick = useCallback(
     (info) => {
-      /*add calls to auth.js functions, determine if sign in was sucessful */
-      console.log(info);
       signIn(info)
         .then((data) => {
           // saving the token
           if (data?.token) {
             localStorage.setItem('token', data.token);
-            console.log(data.token);
           } else {
             setSuccessMessage(false); //prepare the InfoToolTip so that it has failure message
             throw new AuthorizationError(
@@ -89,12 +82,8 @@ function App() {
           }
         })
         .then(() => {
-          console.log(
-            'this message is from app.js and it is tellung u u have signed in. congratz.'
-          );
           setIsLoggedIn(true);
           getEmail();
-          console.log('is logged in set to ', isLoggedIn);
           history.push('/'); // After your login action you can redirect with this command:
         })
         .catch((err) => {
@@ -259,10 +248,8 @@ function App() {
       //check to make sure the token is valid
       checkToken()
         .then(() => {
-          console.log('checked the token');
           setIsLoggedIn(true);
           getEmail();
-          console.log('in UseEffect, is logged in set to ', isLoggedIn);
           history.push('/');
         })
         .catch((err) => {
@@ -274,7 +261,6 @@ function App() {
   function getEmail() {
     checkToken()
       .then((mail) => {
-        console.log('ingetEmail, email is', mail);
         setEmail(mail);
       })
       .catch((err) => {
