@@ -23,7 +23,7 @@ export function signIn(info) {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify(info),
-  }).then((res) => res.json());
+  }).then(processResponse);
 }
 
 export function checkToken() {
@@ -35,7 +35,7 @@ export function checkToken() {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   })
-    .then((res) => res.json())
+    .then(processResponse)
     .then((output) => {
       //data contains id and email
       return output.data.email;
