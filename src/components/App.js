@@ -55,6 +55,7 @@ function App() {
     signUp(info)
       .then((res) => {
         setSuccessMessage(true);
+        history.push('/signin'); //redirect to login page so the new user can log in
       })
       .catch((err) => {
         setSuccessMessage(false);
