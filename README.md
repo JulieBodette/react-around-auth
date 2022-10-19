@@ -17,6 +17,10 @@ Authorization and registration was done using JWT and api calls to a server.
 
 All authorization, registration and token requests must go through to the server running on [https://register.nomoreparties.co](https://register.nomoreparties.co/).
 
+# GitHub Pages link
+
+[Click here to see the project on GitHub Pages!](https://juliebodette.github.io/react-around-auth/)
+
 # Pictures
 
 ![Log In](./src/images/loginpage.PNG)
