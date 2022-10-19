@@ -76,7 +76,6 @@ function App() {
           if (data?.token) {
             localStorage.setItem('token', data.token);
           } else {
-            setSuccessMessage(false); //prepare the InfoToolTip so that it has failure message
             throw new AuthorizationError(
               'error- username and/or password was wrong'
             );
@@ -93,6 +92,8 @@ function App() {
           console.log(err);
           //TODO: show a popup that says "your username or passord is wrong"
           //currently displays a generic error message
+          setSuccessMessage(false); //prepare the InfoToolTip so that it has failure message
+          //important that we do this RIGHT before we open the tooltip- to ensure that ANY error we catch will result in the failure popup
           setIsInfoTooltipOpen(true);
         });
     },
